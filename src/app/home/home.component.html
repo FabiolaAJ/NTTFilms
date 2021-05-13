@@ -1,0 +1,78 @@
+    <body>
+        <app-header></app-header> 
+    
+        <div class="container">
+            <div class="row justify-content-md-center mt-4">
+                <div class="col-12">
+                    <p class="text-center title">
+                        <img src="/assets/film.png" width=40 height=40>
+                        NTT Films
+                    </p>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-12">
+                    <p class="text-center text-justify">We're glad you're here. At NTT Films you can find your favorite movies and TV series in a simple and easy way.</p>
+                </div>
+            </div>
+            <form [formGroup]="searchForm"  class="row d-flex justify-content-center"   (submit)="search()">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <input class="form-control search " formControlName="search" type="search" placeholder="Search" aria-label="Search">
+                </div>
+                <div class="row">
+                    <button class="btn-md mt-1 mr-3 ml-lg-3  ml-md-3 search-button" type="submit"><img src="/assets/search.png" /></button>
+                    <div class="mt-2 reset" (click)="reset()"><img src="/assets/trash.png" /></div>
+                </div>
+            
+                
+    
+            </form>
+            <div *ngIf="!error" class="row justify-content-md-center description animate__animated animate__fadeIn  mb-4">
+                <div class="col-lg-8 col-sm-12 text-justify">
+                    <h5><b>{{film.Title}}</b></h5>
+                    <p>
+                        Released: {{film.Released}} - Runtime: {{film.Runtime}} - Genre: {{film.Genre}} - Language: {{film.Language}} - Country: {{film.Country}}.
+                    </p>
+                    <p>
+                        {{film.Plot}}
+                    </p>
+                    <h6>
+                        Directed by {{film.Director}}, written by {{film.Writer}}.
+                        <p>{{film.Awards}}</p>
+                        Production by {{film.Production}}.
+    
+                    </h6>
+                    <h6 class="pt-4"><b>Actors: </b>{{film.Actors}}.</h6>
+                    <div class="row">
+                        <div class="col-12">
+                            <bar-rating class="float-left mt-1" [(rate)]="rate" [max]="5"></bar-rating>
+    
+    
+                        </div>
+                        
+                    </div>
+               
+                    <div  class="float-left  mb-4 mt-2">
+                        <img class="mt-2 favorite" (click)="like(film.Title)"*ngIf="!favorite" width=24 height=24 src="/assets/like-default.png">
+                        <img class="mt-2 favorite" (click)="like(film.Title)" *ngIf="favorite" width=24 height=24 src="/assets/like.png"> 
+                    </div>
+    
+                </div>
+                <div class="col-lg-4 col-md-6  mb-4 poster">
+                    <img src="{{film.Poster}}" class="film-img">
+    
+                </div>
+            </div>
+            <div *ngIf="errorMessage" class="row justify-content-md-center description">
+                <div class="col-12 text-center text-justify">
+                    <img src="/assets/error.svg" class="error" />
+                    <h6 class="mt-4">{{errorMessage}}</h6>
+                </div>
+            </div>
+        </div>
+       
+       
+        <app-footer></app-footer>
+
+    </body>
+
