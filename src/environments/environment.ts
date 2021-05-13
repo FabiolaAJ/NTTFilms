@@ -5,6 +5,7 @@
 export const environment = {
   production: false
 };
+export const API_URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=f0f0e5de';
 
 /*
  * For easier debugging in development mode, you can import the following file
